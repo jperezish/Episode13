@@ -10,7 +10,12 @@ class Teacher
   end
 
   def average_grade
-    76
+    sum_of_class_grades = 0
+    number_of_students_in_the_class = @assignments.count
+    @assignments.each do |student, assignment|
+      sum_of_class_grades += assignment.grade
+    end
+    sum_of_class_grades / number_of_students_in_the_class
   end
 
   def submit_assignment(student, assignment)

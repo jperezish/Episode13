@@ -22,17 +22,21 @@ describe Teacher do
 
   describe "should provide an average grade for the class" do
     it "should provide an average grade" do
-      student1 = double
-      student2 = double
-      student3 = double
-      assignment = double("assignment")
-      assignment.stub(:grade=)
-      subject.submit_assignment(student1, assignment)
-      subject.submit_assignment(student2, assignment)
-      subject.submit_assignment(student3, assignment)
-      subject.record_grade(student1, 95)
-      subject.record_grade(student2, 50)
-      subject.record_grade(student3, 80)
+      student1    = double
+      student2    = double
+      student3    = double
+      assignment1 = double("assignment 1")
+      assignment2 = double("assignment 2")
+      assignment3 = double("assignment 3")
+      assignment1.stub(:grade=)
+      assignment2.stub(:grade=)
+      assignment3.stub(:grade=)
+      assignment1.stub(:grade) { 95 }
+      assignment2.stub(:grade) { 50 }
+      assignment3.stub(:grade) { 80 }
+      subject.submit_assignment(student1, assignment1)
+      subject.submit_assignment(student2, assignment2)
+      subject.submit_assignment(student3, assignment3)
 
       subject.average_grade.should eq(75)
     end
