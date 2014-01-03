@@ -1,4 +1,6 @@
 class Teacher
+  attr_reader :assignments
+
   def initialize
     @assignments = {}
   end
@@ -9,13 +11,10 @@ class Teacher
     @assignments[student] = assignment
   end
 
-  def average_grade
-    sum_of_class_grades = 0
-    number_of_students_in_the_class = @assignments.count
-    @assignments.each do |student, assignment|
-      sum_of_class_grades += assignment.grade
-    end
-    sum_of_class_grades / number_of_students_in_the_class
+  def average_grade(assignments)
+    class_grades = assignments.map { |student, assignment| assignment.grade }
+    sum_of_class_grades = class_grades.inject(:+)
+    sum_of_class_grades / assignments.size
   end
 
   def submit_assignment(student, assignment)

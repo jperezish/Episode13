@@ -18,5 +18,5 @@ When /^I give the assignments a grade$/ do
 end
 
 Then /^I can view the average grade for my class$/ do
-  @teacher.average_grade.should eq(75)
+  @teacher.average_grade(@teacher.assignments).should eq(75)
 end
