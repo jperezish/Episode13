@@ -3,8 +3,8 @@ Given /^I am a student$/ do
   @teacher = Teacher.new
 end
 
-When /^I submit an assigment to my teacher$/ do
-  @assignment = Assignment.new 
+When /^I submit an assignment to my teacher$/ do
+  @assignment = Assignment.new
   @teacher.submit_assignment(@student, @assignment)
 end
 
