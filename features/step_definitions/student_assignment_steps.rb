@@ -3,11 +3,13 @@ Given /^I am a student$/ do
   @teacher = Teacher.new
 end
 
-When /^I submit an assignment to my teacher$/ do
-  @assignment = Assignment.new
-  @teacher.submit_assignment(@student, @assignment)
+When /^I submit the "(.*?)" assignment to my teacher$/ do |name|
+  @assignment = Assignment.new(name)
+  @assignments_to_turn_in ||= []
+  @assignments_to_turn_in << @assignment
+  @teacher.submit_assignment(@student, @assignments_to_turn_in)
 end
 
-Then /^my teacher should have my assignment$/ do
-  @teacher.assignment_for_student(@student).should eq(@assignment)
+Then /^my teacher should have my assignments$/ do
+  @teacher.assignment_for_student(@student).should eq(@assignments_to_turn_in)
 end

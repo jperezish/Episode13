@@ -17,8 +17,9 @@ class Teacher
     sum_of_class_grades / assignments.size
   end
 
-  def submit_assignment(student, assignment)
-    @assignments[student] = assignment
+  def submit_assignment(student, pending_assignments)
+    @assignments[student] ||= []
+    @assignments[student].concat(pending_assignments)
   end
 
   def assignment_for_student(student)
